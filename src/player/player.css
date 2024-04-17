@@ -1,0 +1,78 @@
+.center{
+    position: absolute;
+    top: 45%;
+    left: 45%;
+}
+
+.back{
+    background: none;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.back:hover{
+    color: crimson;
+}
+
+.forward{
+    background: none;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.forward:hover{
+    color: crimson;
+}
+
+.playpause{
+    background: crimson;
+    font-size: 16px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+}
+
+.playpause1{
+    background: crimson;
+    position: relative;
+    right: 20%;
+    font-size: 16px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+}
+
+.playpause2{
+    background: crimson;
+    position: relative;
+    left: 20%;
+    font-size: 16px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+}
+
+.range{
+    position: relative;
+    margin: 10%;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #ccc;
+    margin-top: 10px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #4caf50;
+}
