@@ -4,6 +4,8 @@ import { songsdata } from './player/audios';
 import { useEffect, useRef, useState } from 'react';
 
 function App() {
+  const [audioPlayer, setAudioPlayer] = useState(null);
+  const [curAudioPos, setCurrentAudioPos] = useState(0);
   const [songs, setSongs] = useState(songsdata);
   const [isplay, setIsplay] = useState(false);
   const [currentsong, setCurrentsong] = useState(songsdata[0]);
@@ -15,24 +17,29 @@ function App() {
     } else {
       audioElem.current.pause();
     }
-  }, [isplay, audioElem]); // Added audioElem to the dependency array
+  }, [isplay, audioElem]);
 
-  const onplaying = (e) => {
-    //const percent = ((e.currentTarget.currentTime / e.currentTarget.duration) * 100).toFixed(2);
-    // Update the progress bar here
-  };
+  const handleAudioSeek = (val) => {
+    console.log("Seek to ", val);
+    setCurrentAudioPos(val);
+    audioElem.current.currentTime = val;
+  }
 
   return (
     <div className="App">
       <audio
+        id="audioPlayer"
         src={currentsong.url}
         ref={audioElem}
-        onLoadedData={(e) => {
-          // setDuration(e.currentTarget.duration.toFixed(2)); // No longer using duration state
-        }}
-        onTimeUpdate={onplaying}
-      ></audio>
+        onLoad={(e) => setAudioPlayer(e)}
+        onTimeUpdate={(e) => {
+        setCurrentAudioPos(e.target.currentTime);
+        console.log("Progress", e.target.currentTime);
+  }}
+></audio>
+
       <Player
+        audioPlayer={audioPlayer}
         songs={songs}
         setSongs={setSongs}
         isplay={isplay}
@@ -40,6 +47,8 @@ function App() {
         audioElem={audioElem}
         currentsong={currentsong}
         setCurrentsong={setCurrentsong}
+        handleAudioSeek={handleAudioSeek}
+        curAudioPos={curAudioPos}
       />
     </div>
   );
